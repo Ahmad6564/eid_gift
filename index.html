@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eid Mubarak, My Future Wife 🌙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a14;
+      color: #f5f0e8;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a14; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #c9a84c, #8b6914); border-radius: 4px; }
+
+    /* ===== PRELOADER ===== */
+    .preloader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a14 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .preloader-moon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffd700 0%, #c9a84c 50%, #8b6914 100%);
+      box-shadow: 0 0 60px rgba(201,168,76,0.6), 0 0 120px rgba(201,168,76,0.3);
+      animation: moonPulse 2s ease-in-out infinite;
+    }
+    .preloader-text {
+      margin-top: 24px; font-family: 'Great Vibes', cursive; font-size: 1.8rem;
+      color: #c9a84c; animation: fadeInUp 1s ease 0.5s both;
+    }
+    @keyframes moonPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(201,168,76,0.6); }
+      50% { transform: scale(1.15); box-shadow: 0 0 90px rgba(201,168,76,0.8); }
+    }
+
+    /* ===== FLOATING PARTICLES ===== */
+    .particles-container {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .particle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.8), rgba(201,168,76,0));
+      animation: floatParticle linear infinite;
+    }
+    @keyframes floatParticle {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== STARS ===== */
+    .stars-container {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    }
+    .star {
+      position: absolute; width: 2px; height: 2px; border-radius: 50%;
+      background: #fff; animation: twinkle ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    /* ===== NAVIGATION ===== */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 16px 40px;
+      background: rgba(10,10,20,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+    .navbar.scrolled {
+      padding: 10px 40px;
+      background: rgba(10,10,20,0.95);
+      box-shadow: 0 4px 30px rgba(201,168,76,0.1);
+    }
+    .nav-logo {
+      font-family: 'Great Vibes', cursive; font-size: 1.6rem;
+      color: #c9a84c; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: #d4c5a0; text-decoration: none; font-size: 0.88rem;
+      font-weight: 400; letter-spacing: 1px; text-transform: uppercase;
+      position: relative; transition: color 0.3s ease;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+      background: linear-gradient(90deg, #c9a84c, #ffd700);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: #ffd700; }
+    .nav-links a:hover::after { width: 100%; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span {
+      width: 25px; height: 2px; background: #c9a84c;
+      transition: all 0.3s ease; display: block;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .music-toggle {
+      background: none; border: 2px solid rgba(201,168,76,0.4);
+      color: #c9a84c; width: 40px; height: 40px; border-radius: 50%;
+      cursor: pointer; font-size: 1rem; display: flex; align-items: center;
+      justify-content: center; transition: all 0.3s ease;
+    }
+    .music-toggle:hover {
+      background: rgba(201,168,76,0.15); border-color: #c9a84c;
+      transform: scale(1.1);
+    }
+    .music-toggle.playing { animation: musicPulse 1.5s ease infinite; }
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(201,168,76,0); }
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      position: relative; padding: 100px 20px 60px;
+      background: radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.08) 0%, transparent 70%);
+    }
+    .crescent-moon {
+      width: 140px; height: 140px; position: relative;
+      margin-bottom: 30px; animation: moonFloat 6s ease-in-out infinite;
+    }
+    .crescent-moon .moon-outer {
+      width: 140px; height: 140px; border-radius: 50%;
+      background: linear-gradient(135deg, #ffd700 0%, #c9a84c 50%, #a07c1c 100%);
+      box-shadow: 0 0 80px rgba(255,215,0,0.4), 0 0 160px rgba(201,168,76,0.2),
+                  inset -8px -8px 20px rgba(139,105,20,0.3);
+      position: relative;
+    }
+    .crescent-moon .moon-inner {
+      position: absolute; width: 110px; height: 110px; border-radius: 50%;
+      background: #0a0a14; top: -10px; right: -15px;
+      box-shadow: inset 5px 5px 15px rgba(201,168,76,0.1);
+    }
+    .moon-glow {
+      position: absolute; inset: -30px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%);
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+    @keyframes moonFloat {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+
+    /* Lantern decorations */
+    .lantern {
+      position: absolute; width: 40px; animation: lanternSwing 4s ease-in-out infinite;
+    }
+    .lantern-left { top: 15%; left: 8%; animation-delay: 0s; }
+    .lantern-right { top: 12%; right: 8%; animation-delay: 1s; }
+    .lantern-body {
+      width: 40px; height: 60px; border-radius: 8px 8px 50% 50%;
+      background: linear-gradient(180deg, rgba(255,215,0,0.9), rgba(201,168,76,0.7));
+      box-shadow: 0 0 30px rgba(255,215,0,0.4), 0 0 60px rgba(201,168,76,0.2);
+      position: relative; margin: 0 auto;
+    }
+    .lantern-body::before {
+      content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      width: 20px; height: 12px; border: 2px solid #c9a84c; border-bottom: none;
+      border-radius: 10px 10px 0 0;
+    }
+    .lantern-body::after {
+      content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%);
+      width: 2px; height: 15px; background: #c9a84c;
+    }
+    .lantern-chain {
+      width: 2px; height: 60px; background: linear-gradient(180deg, rgba(201,168,76,0.3), #c9a84c);
+      margin: 0 auto;
+    }
+    @keyframes lanternSwing {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .hero-badge {
+      display: inline-block; padding: 8px 28px; border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 50px; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
+      color: #c9a84c; margin-bottom: 20px; animation: fadeInUp 1s ease 0.3s both;
+      background: rgba(201,168,76,0.05);
+    }
+    .hero-title {
+      font-family: 'Great Vibes', cursive; font-size: clamp(3rem, 8vw, 6.5rem);
+      color: #ffd700; line-height: 1.2; margin-bottom: 10px;
+      text-shadow: 0 0 40px rgba(255,215,0,0.3);
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 3vw, 1.6rem);
+      color: #d4c5a0; font-weight: 300; font-style: italic;
+      margin-bottom: 30px; animation: fadeInUp 1s ease 0.9s both;
+    }
+    .hero-message {
+      max-width: 600px; font-size: 1rem; line-height: 1.8;
+      color: rgba(245,240,232,0.8); animation: fadeInUp 1s ease 1.2s both;
+    }
+    .scroll-indicator {
+      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      animation: fadeInUp 1s ease 1.8s both;
+    }
+    .scroll-indicator span {
+      font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(201,168,76,0.6);
+    }
+    .scroll-arrow {
+      width: 24px; height: 24px; border-right: 2px solid #c9a84c;
+      border-bottom: 2px solid #c9a84c; transform: rotate(45deg);
+      animation: scrollBounce 2s ease infinite;
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; }
+      50% { transform: rotate(45deg) translateY(8px); opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== SECTION COMMON ===== */
+    section {
+      position: relative; z-index: 1; padding: 100px 20px;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 60px;
+    }
+    .section-label {
+      display: inline-block; font-size: 0.75rem; letter-spacing: 4px;
+      text-transform: uppercase; color: #c9a84c; margin-bottom: 12px;
+      position: relative;
+    }
+    .section-label::before, .section-label::after {
+      content: '✦'; margin: 0 12px; font-size: 0.6rem; vertical-align: middle;
+    }
+    .section-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: #ffd700;
+      text-shadow: 0 0 30px rgba(255,215,0,0.2);
+    }
+    .divider {
+      width: 80px; height: 2px; margin: 20px auto 0;
+      background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+    }
+
+    /* ===== EID WISHES SECTION ===== */
+    .wishes-section {
+      background: radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.05) 0%, transparent 70%);
+    }
+    .wishes-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .wish-card {
+      background: linear-gradient(145deg, rgba(26,26,46,0.8), rgba(10,10,20,0.9));
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 20px; padding: 40px 30px; text-align: center;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative; overflow: hidden;
+    }
+    .wish-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, #ffd700, transparent);
+      opacity: 0; transition: opacity 0.5s ease;
+    }
+    .wish-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(201,168,76,0.4);
+      box-shadow: 0 20px 60px rgba(201,168,76,0.15);
+    }
+    .wish-card:hover::before { opacity: 1; }
+    .wish-icon {
+      font-size: 2.5rem; margin-bottom: 20px;
+      display: inline-block; animation: iconFloat 3s ease-in-out infinite;
+    }
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .wish-card h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      color: #ffd700; margin-bottom: 15px;
+    }
+    .wish-card p {
+      font-size: 0.92rem; line-height: 1.8; color: rgba(245,240,232,0.75);
+    }
+
+    /* ===== GIFT BOXES SECTION ===== */
+    .gifts-section {
+      background: linear-gradient(180deg, transparent, rgba(201,168,76,0.03), transparent);
+    }
+    .gifts-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .gift-box {
+      position: relative; perspective: 800px; cursor: pointer;
+      height: 280px;
+    }
+    .gift-box-inner {
+      position: relative; width: 100%; height: 100%;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+    }
+    .gift-box.opened .gift-box-inner {
+      transform: rotateY(180deg);
+    }
+    .gift-front, .gift-back {
+      position: absolute; inset: 0; border-radius: 20px;
+      backface-visibility: hidden; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      padding: 30px; text-align: center;
+    }
+    .gift-front {
+      background: linear-gradient(145deg, rgba(26,26,46,0.9), rgba(15,15,30,0.95));
+      border: 2px solid rgba(201,168,76,0.2);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gift-front:hover {
+      border-color: rgba(201,168,76,0.5);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.15);
+    }
+    .gift-icon {
+      font-size: 3.5rem; margin-bottom: 16px;
+      animation: giftBounce 2s ease-in-out infinite;
+    }
+    @keyframes giftBounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+    }
+    .gift-front h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.15rem;
+      color: #ffd700; margin-bottom: 8px;
+    }
+    .gift-front p {
+      font-size: 0.8rem; color: rgba(201,168,76,0.5);
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+    .gift-ribbon {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 30px; height: 100%; 
+      background: linear-gradient(180deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05));
+      pointer-events: none;
+    }
+    .gift-ribbon::before {
+      content: ''; position: absolute; top: 0; left: -35px;
+      width: 100px; height: 30px;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.15), transparent);
+    }
+    .gift-back {
+      background: linear-gradient(145deg, rgba(201,168,76,0.12), rgba(26,26,46,0.95));
+      border: 2px solid rgba(201,168,76,0.35);
+      transform: rotateY(180deg);
+      box-shadow: 0 15px 50px rgba(201,168,76,0.2);
+    }
+    .gift-back .gift-msg-icon { font-size: 2rem; margin-bottom: 14px; }
+    .gift-back h4 {
+      font-family: 'Playfair Display', serif; color: #ffd700;
+      font-size: 1.1rem; margin-bottom: 12px;
+    }
+    .gift-back p {
+      font-size: 0.9rem; line-height: 1.8; color: rgba(245,240,232,0.85);
+      font-style: italic;
+    }
+    .gift-close {
+      position: absolute; top: 12px; right: 16px; background: none;
+      border: none; color: rgba(201,168,76,0.5); font-size: 1.2rem;
+      cursor: pointer; transition: color 0.3s;
+    }
+    .gift-close:hover { color: #ffd700; }
+
+    /* ===== ROMANTIC MESSAGE SECTION ===== */
+    .message-section {
+      background: radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 60%);
+    }
+    .message-container {
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .message-envelope {
+      width: 100px; height: 80px; margin: 0 auto 40px; position: relative;
+      cursor: pointer;
+    }
+    .envelope-body {
+      width: 100px; height: 70px; background: linear-gradient(145deg, #c9a84c, #8b6914);
+      border-radius: 4px 4px 8px 8px; position: absolute; bottom: 0;
+      box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+    }
+    .envelope-flap {
+      width: 0; height: 0;
+      border-left: 50px solid transparent; border-right: 50px solid transparent;
+      border-top: 45px solid #a07c1c;
+      position: absolute; top: 0;
+      transition: transform 0.6s ease;
+      transform-origin: top center;
+    }
+    .envelope-opened .envelope-flap {
+      transform: rotateX(180deg);
+    }
+    .love-letter {
+      background: linear-gradient(145deg, rgba(26,26,46,0.9), rgba(15,15,30,0.95));
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 24px; padding: 50px 40px;
+      position: relative; overflow: hidden;
+    }
+    .love-letter::before {
+      content: '"'; font-family: 'Great Vibes', cursive;
+      font-size: 10rem; color: rgba(201,168,76,0.08);
+      position: absolute; top: -20px; left: 20px; line-height: 1;
+    }
+    .love-letter .typed-text {
+      font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2.5vw, 1.2rem);
+      line-height: 2; color: rgba(245,240,232,0.9); font-style: italic;
+      min-height: 200px;
+    }
+    .typing-cursor {
+      display: inline-block; width: 2px; height: 1.2em;
+      background: #ffd700; margin-left: 2px; vertical-align: text-bottom;
+      animation: blink 0.8s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .love-signature {
+      margin-top: 30px; font-family: 'Great Vibes', cursive;
+      font-size: 1.6rem; color: #c9a84c;
+    }
+
+    /* Floating hearts */
+    .hearts-container {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .floating-heart {
+      position: absolute; color: rgba(201,168,76,0.15);
+      animation: heartFloat linear infinite;
+    }
+    @keyframes heartFloat {
+      0% { transform: translateY(100%) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100%) rotate(360deg); opacity: 0; }
+    }
+
+    /* ===== COUNTDOWN / SPECIAL SECTION ===== */
+    .special-section {
+      text-align: center;
+      background: linear-gradient(180deg, transparent, rgba(201,168,76,0.04), transparent);
+    }
+    .special-quote {
+      max-width: 700px; margin: 0 auto 50px;
+      font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-style: italic; line-height: 1.9; color: rgba(245,240,232,0.85);
+    }
+    .promise-cards {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;
+    }
+    .promise-card {
+      background: linear-gradient(145deg, rgba(26,26,46,0.7), rgba(10,10,20,0.8));
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 16px; padding: 30px 24px; text-align: center;
+      transition: all 0.4s ease;
+    }
+    .promise-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201,168,76,0.35);
+      box-shadow: 0 15px 40px rgba(201,168,76,0.1);
+    }
+    .promise-card .emoji { font-size: 2rem; margin-bottom: 14px; }
+    .promise-card h4 {
+      font-family: 'Playfair Display', serif; color: #ffd700;
+      font-size: 1.1rem; margin-bottom: 10px;
+    }
+    .promise-card p {
+      font-size: 0.88rem; color: rgba(245,240,232,0.65); line-height: 1.7;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center; padding: 60px 20px 40px; position: relative; z-index: 1;
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+    .footer-moon { font-size: 3rem; margin-bottom: 16px; }
+    .footer h3 {
+      font-family: 'Great Vibes', cursive; font-size: 2rem; color: #c9a84c;
+      margin-bottom: 8px;
+    }
+    .footer p {
+      font-size: 0.85rem; color: rgba(245,240,232,0.5);
+    }
+    .footer-hearts {
+      margin-top: 20px; font-size: 1.2rem; color: #c9a84c;
+      animation: heartBeat 1.5s ease infinite;
+    }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.15); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.1); }
+    }
+
+    /* ===== CONFETTI ===== */
+    .confetti-piece {
+      position: fixed; z-index: 9998; pointer-events: none;
+      width: 10px; height: 10px;
+      animation: confettiFall linear forwards;
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== REVEAL ANIMATION ===== */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ===== SURPRISE BUTTON ===== */
+    .surprise-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 40px; border: 2px solid #c9a84c;
+      background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+      color: #ffd700; font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem; font-weight: 500; letter-spacing: 1px;
+      border-radius: 50px; cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      margin-top: 40px;
+    }
+    .surprise-btn:hover {
+      background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(201,168,76,0.1));
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.25);
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .navbar { padding: 12px 20px; }
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
+        background: rgba(10,10,20,0.98); backdrop-filter: blur(20px);
+        flex-direction: column; align-items: center; justify-content: center;
+        gap: 32px; transition: right 0.4s ease;
+      }
+      .nav-links.active { right: 0; }
+      .hamburger { display: flex; }
+      .lantern { display: none; }
+      .crescent-moon { width: 100px; height: 100px; }
+      .crescent-moon .moon-outer { width: 100px; height: 100px; }
+      .crescent-moon .moon-inner { width: 80px; height: 80px; top: -8px; right: -12px; }
+      .love-letter { padding: 30px 20px; }
+      .gifts-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+      .gift-box { height: 260px; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 70px 16px; }
+      .wish-card { padding: 30px 20px; }
+      .gifts-grid { grid-template-columns: 1fr; }
+      .gift-box { height: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-moon"></div>
+    <p class="preloader-text">Preparing something special for you...</p>
+  </div>
+
+  <!-- PARTICLES -->
+  <div class="particles-container" id="particles"></div>
+
+  <!-- STARS -->
+  <div class="stars-container" id="stars"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">🌙 Eid Mubarak</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" onclick="closeNav()">Home</a></li>
+      <li><a href="#wishes" onclick="closeNav()">Wishes</a></li>
+      <li><a href="#gifts" onclick="closeNav()">Gifts</a></li>
+      <li><a href="#message" onclick="closeNav()">Message</a></li>
+      <li><a href="#special" onclick="closeNav()">Forever</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="music-toggle" id="musicBtn" title="Toggle Music" onclick="toggleMusic()">
+        <i class="fas fa-volume-mute" id="musicIcon"></i>
+      </button>
+      <button class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <!-- Lanterns -->
+    <div class="lantern lantern-left">
+      <div class="lantern-chain"></div>
+      <div class="lantern-body"></div>
+    </div>
+    <div class="lantern lantern-right">
+      <div class="lantern-chain"></div>
+      <div class="lantern-body"></div>
+    </div>
+
+    <div class="crescent-moon">
+      <div class="moon-glow"></div>
+      <div class="moon-outer">
+        <div class="moon-inner"></div>
+      </div>
+    </div>
+    <div class="hero-badge">✦ Eid ul-Fitr 2026 ✦</div>
+    <h1 class="hero-title">Eid Mubarak, Zoha</h1>
+    <p class="hero-subtitle">A Special Eid Gift, Just For You 🌙</p>
+    <p class="hero-message">
+      On this blessed day of Eid, I wanted to create something as beautiful as you are to me.
+      This little corner of the internet is my heart, wrapped in gold and moonlight, dedicated entirely to you.
+    </p>
+    <button class="surprise-btn" onclick="launchConfetti(); this.innerHTML='💖 JazakAllah for being in my life!'">
+      ✨ Open Your Eid Surprise
+    </button>
+    <div class="scroll-indicator">
+      <span>Scroll Down</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- EID WISHES SECTION -->
+  <section class="wishes-section" id="wishes">
+    <div class="section-header reveal">
+      <p class="section-label">Heartfelt Prayers</p>
+      <h2 class="section-title">Eid Wishes For You</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="wishes-grid">
+      <div class="wish-card reveal reveal-delay-1">
+        <div class="wish-icon">🌙</div>
+        <h3>Blessed Eid</h3>
+        <p>May this Eid bring you endless joy, peace, and all the happiness your beautiful heart deserves. You are Allah's greatest blessing in my life.</p>
+      </div>
+      <div class="wish-card reveal reveal-delay-2">
+        <div class="wish-icon">💫</div>
+        <h3>Our Journey Together</h3>
+        <p>Every Ramadan taught me patience, and every Eid reminds me of the reward — and my greatest reward is having you by my side, today and always.</p>
+      </div>
+      <div class="wish-card reveal reveal-delay-3">
+        <div class="wish-icon">🤲</div>
+        <h3>My Dua For Us</h3>
+        <p>I pray that Allah blesses our bond, fills our future with love and barakah, and grants us countless more Eids together — hand in hand, heart to heart.</p>
+      </div>
+      <div class="wish-card reveal reveal-delay-1">
+        <div class="wish-icon">🕌</div>
+        <h3>A Sacred Bond</h3>
+        <p>Our love is not just written in the stars — it is written in destiny by the Most Merciful. Eid Mubarak to the one who makes my deen and duniya beautiful.</p>
+      </div>
+      <div class="wish-card reveal reveal-delay-2">
+        <div class="wish-icon">🌹</div>
+        <h3>You Are My Eid</h3>
+        <p>People wait all month for Eid to feel happiness — but I feel it every single moment I spend with you. You are my celebration, my joy, my everything.</p>
+      </div>
+      <div class="wish-card reveal reveal-delay-3">
+        <div class="wish-icon">✨</div>
+        <h3>Forever Grateful</h3>
+        <p>Thank you for being my peace in chaos, my smile in sadness, and my home in this world. May Allah protect what we have and multiply our love endlessly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE GIFT BOXES SECTION -->
+  <section class="gifts-section" id="gifts">
+    <div class="section-header reveal">
+      <p class="section-label">Unwrap With Love</p>
+      <h2 class="section-title">Eid Gifts For You</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="gifts-grid">
+      <div class="gift-box reveal reveal-delay-1" onclick="openGift(this)">
+        <div class="gift-box-inner">
+          <div class="gift-front">
+            <div class="gift-ribbon"></div>
+            <div class="gift-icon">🎁</div>
+            <h3>Gift #1</h3>
+            <p>Tap to unwrap</p>
+          </div>
+          <div class="gift-back">
+            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
+            <div class="gift-msg-icon">🌙</div>
+            <h4>You Are My Noor</h4>
+            <p>Allah placed a special light in you — a warmth that brightens every room, every heart, and every moment. I feel truly blessed that He chose you for me.</p>
+          </div>
+        </div>
+      </div>
+      <div class="gift-box reveal reveal-delay-2" onclick="openGift(this)">
+        <div class="gift-box-inner">
+          <div class="gift-front">
+            <div class="gift-ribbon"></div>
+            <div class="gift-icon">🎀</div>
+            <h3>Gift #2</h3>
+            <p>Tap to unwrap</p>
+          </div>
+          <div class="gift-back">
+            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
+            <div class="gift-msg-icon">✨</div>
+            <h4>Your Kindness</h4>
+            <p>The way you care about everyone around you — your beautiful heart reflects the mercy of the Most Merciful Himself. I admire your compassion deeply.</p>
+          </div>
+        </div>
+      </div>
+      <div class="gift-box reveal reveal-delay-3" onclick="openGift(this)">
+        <div class="gift-box-inner">
+          <div class="gift-front">
+            <div class="gift-ribbon"></div>
+            <div class="gift-icon">🎊</div>
+            <h3>Gift #3</h3>
+            <p>Tap to unwrap</p>
+          </div>
+          <div class="gift-back">
+            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
+            <div class="gift-msg-icon">🤲</div>
+            <h4>A Special Dua</h4>
+            <p>Ya Allah, bless my future wife with all the happiness in both worlds. Grant her every wish of her heart and keep her always smiling. Ameen. 🤍</p>
+          </div>
+        </div>
+      </div>
+      <div class="gift-box reveal reveal-delay-1" onclick="openGift(this)">
+        <div class="gift-box-inner">
+          <div class="gift-front">
+            <div class="gift-ribbon"></div>
+            <div class="gift-icon">💝</div>
+            <h3>Gift #4</h3>
+            <p>Tap to unwrap</p>
+          </div>
+          <div class="gift-back">
+            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
+            <div class="gift-msg-icon">🌹</div>
+            <h4>My Respect For You</h4>
+            <p>I respect your values, your faith, and the beautiful person you are. In Sha Allah, I will always honor who you are and support your dreams.</p>
+          </div>
+        </div>
+      </div>
+      <div class="gift-box reveal reveal-delay-2" onclick="openGift(this)">
+        <div class="gift-box-inner">
+          <div class="gift-front">
+            <div class="gift-ribbon"></div>
+            <div class="gift-icon">🌟</div>
+            <h3>Gift #5</h3>
+            <p>Tap to unwrap</p>
+          </div>
+          <div class="gift-back">
+            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
+            <div class="gift-msg-icon">🏡</div>
+            <h4>Our Future Home</h4>
+            <p>I dream of building a home filled with peace, laughter, and the recitation of Quran. A place where our hearts find sukoon — together, always.</p>
+          </div>
+        </div>
+      </div>
+      <div class="gift-box reveal reveal-delay-3" onclick="openGift(this)">
+        <div class="gift-box-inner">
+          <div class="gift-front">
+            <div class="gift-ribbon"></div>
+            <div class="gift-icon">🎁</div>
+            <h3>Gift #6</h3>
+            <p>Tap to unwrap</p>
+          </div>
+          <div class="gift-back">
+            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
+            <div class="gift-msg-icon">💫</div>
+            <h4>Eid Promise</h4>
+            <p>This Eid, I promise to always be someone you can rely on — your partner in deen and duniya, your support, and your biggest cheerleader. Always. 💛</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close">&times;</button>
+    <img id="lightboxImg" src="" alt="Photo" />
+  </div>
+
+  <!-- ROMANTIC MESSAGE SECTION -->
+  <section class="message-section" id="message">
+    <div class="hearts-container" id="heartsContainer"></div>
+    <div class="section-header reveal">
+      <p class="section-label">From My Heart</p>
+      <h2 class="section-title">A Letter For You</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="message-container reveal">
+      <div class="message-envelope" id="envelope" onclick="openEnvelope()">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body"></div>
+      </div>
+      <div class="love-letter">
+        <div class="typed-text" id="typedText"></div>
+        <div class="love-signature" id="signature" style="opacity:0;">
+          — Your Future Husband 💛
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL / PROMISES SECTION -->
+  <section class="special-section" id="special">
+    <div class="section-header reveal">
+      <p class="section-label">My Promise To You</p>
+      <h2 class="section-title">Forever & Always</h2>
+      <div class="divider"></div>
+    </div>
+    <p class="special-quote reveal">
+      On this beautiful Eid, I want you to know that you are the greatest blessing in my life.
+      Every day with the thought of our future together fills my heart with gratitude and joy.
+    </p>
+    <div class="promise-cards">
+      <div class="promise-card reveal reveal-delay-1">
+        <div class="emoji">🤝</div>
+        <h4>I Promise to Stand By You</h4>
+        <p>In every storm and every sunshine, my hand will always hold yours. You will never walk alone.</p>
+      </div>
+      <div class="promise-card reveal reveal-delay-2">
+        <div class="emoji">💝</div>
+        <h4>I Promise to Love You More</h4>
+        <p>Every single day, I will find new reasons to fall in love with you all over again.</p>
+      </div>
+      <div class="promise-card reveal reveal-delay-3">
+        <div class="emoji">🌅</div>
+        <h4>I Promise to Build Our Future</h4>
+        <p>A beautiful life together — filled with laughter, love, faith, and endless cups of chai.</p>
+      </div>
+    </div>
+    <button class="surprise-btn" onclick="launchConfetti(); launchHeartBurst();" style="margin-top:50px;">
+      💖 Sending Duas & Prayers
+    </button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-moon">🌙</div>
+    <h3>Eid Mubarak, My Future Wife 🌙</h3>
+    <p>Made with heartfelt prayers & best wishes, just for you — Eid ul-Fitr 2026</p>
+    <div class="footer-hearts">💛 💛 💛</div>
+  </footer>
+
+  <!-- BACKGROUND MUSIC (optional — place an audio file or use a URL) -->
+  <!-- Music is generated via Web Audio API — no external file needed -->
+
+  <script>
+    // ===== PRELOADER =====
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('hidden');
+        initAnimations();
+      }, 2500);
+    });
+
+    // ===== STARS =====
+    function createStars() {
+      const container = document.getElementById('stars');
+      const count = window.innerWidth < 768 ? 60 : 120;
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDuration = (2 + Math.random() * 4) + 's';
+        star.style.animationDelay = Math.random() * 4 + 's';
+        container.appendChild(star);
+      }
+    }
+    createStars();
+
+    // ===== PARTICLES =====
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const count = window.innerWidth < 768 ? 10 : 20;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = 2 + Math.random() * 6;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (10 + Math.random() * 20) + 's';
+        p.style.animationDelay = Math.random() * 15 + 's';
+        container.appendChild(p);
+      }
+    }
+    createParticles();
+
+    // ===== FLOATING HEARTS =====
+    function createFloatingHearts() {
+      const container = document.getElementById('heartsContainer');
+      const hearts = ['💛', '🤍', '✨', '💫', '🌙'];
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = (0.8 + Math.random() * 1.5) + 'rem';
+        heart.style.animationDuration = (8 + Math.random() * 12) + 's';
+        heart.style.animationDelay = Math.random() * 10 + 's';
+        container.appendChild(heart);
+      }
+    }
+    createFloatingHearts();
+
+    // ===== NAVBAR =====
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('active');
+      document.getElementById('hamburger').classList.toggle('active');
+    }
+    function closeNav() {
+      document.getElementById('navLinks').classList.remove('active');
+      document.getElementById('hamburger').classList.remove('active');
+    }
+
+    // ===== MUSIC — Soft Eid Ambient Melody (Web Audio API) =====
+    let musicPlaying = false;
+    let audioCtx = null;
+    let masterGain = null;
+    let musicNodes = [];
+
+    // Pentatonic-inspired scale notes (Hz) — warm, peaceful, Islamic-inspired feel
+    const melodyNotes = [
+      261.63, 293.66, 329.63, 392.00, 440.00,  // C4, D4, E4, G4, A4
+      523.25, 493.88, 440.00, 392.00, 329.63,  // C5, B4, A4, G4, E4
+      293.66, 329.63, 392.00, 440.00, 392.00,  // D4, E4, G4, A4, G4
+      329.63, 293.66, 261.63, 293.66, 329.63   // E4, D4, C4, D4, E4
+    ];
+
+    const padChords = [
+      [130.81, 164.81, 196.00],  // C3, E3, G3
+      [146.83, 174.61, 220.00],  // D3, F3, A3
+      [164.81, 196.00, 246.94],  // E3, G3, B3
+      [130.81, 164.81, 196.00],  // C3, E3, G3
+    ];
+
+    function createEidMusic() {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = 0.35;
+      masterGain.connect(audioCtx.destination);
+
+      // Soft reverb/delay simulation via multiple delayed nodes
+      const convGain = audioCtx.createGain();
+      convGain.gain.value = 0.15;
+      convGain.connect(audioCtx.destination);
+
+      playAmbientPad(convGain);
+      playMelodyLoop(masterGain);
+      playSoftChimes(convGain);
+    }
+
+    function playAmbientPad(output) {
+      let chordIndex = 0;
+      function playChord() {
+        if (!musicPlaying) return;
+        const chord = padChords[chordIndex % padChords.length];
+        chord.forEach(freq => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0, audioCtx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 1.5);
+          gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 3.5);
+          gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 5);
+          osc.connect(gain);
+          gain.connect(output);
+          osc.start(audioCtx.currentTime);
+          osc.stop(audioCtx.currentTime + 5);
+          musicNodes.push(osc);
+        });
+        chordIndex++;
+        const nextChordTimer = setTimeout(() => playChord(), 4800);
+        musicNodes.push({ stop: () => clearTimeout(nextChordTimer) });
+      }
+      playChord();
+    }
+
+    function playMelodyLoop(output) {
+      let noteIndex = 0;
+      function playNote() {
+        if (!musicPlaying) return;
+        const freq = melodyNotes[noteIndex % melodyNotes.length];
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        // Alternate between sine and triangle for warmth
+        osc.type = noteIndex % 3 === 0 ? 'triangle' : 'sine';
+        osc.frequency.value = freq;
+
+        const now = audioCtx.currentTime;
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(0.12, now + 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
+
+        osc.connect(gain);
+        gain.connect(output);
+        osc.start(now);
+        osc.stop(now + 2);
+        musicNodes.push(osc);
+
+        noteIndex++;
+        // Varying rhythm — longer pauses after certain notes
+        const pause = noteIndex % 5 === 0 ? 1200 : noteIndex % 3 === 0 ? 900 : 600;
+        const nextNoteTimer = setTimeout(() => playNote(), pause);
+        musicNodes.push({ stop: () => clearTimeout(nextNoteTimer) });
+      }
+      playNote();
+    }
+
+    function playSoftChimes(output) {
+      const chimeFreqs = [1046.50, 1174.66, 1318.51, 1567.98]; // C6, D6, E6, G6
+      let chimeIndex = 0;
+      function playChime() {
+        if (!musicPlaying) return;
+        const freq = chimeFreqs[chimeIndex % chimeFreqs.length];
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        const now = audioCtx.currentTime;
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(0.04, now + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 2.5);
+        osc.connect(gain);
+        gain.connect(output);
+        osc.start(now);
+        osc.stop(now + 2.6);
+        musicNodes.push(osc);
+        chimeIndex++;
+        const delay = 2500 + Math.random() * 3000;
+        const nextChimeTimer = setTimeout(() => playChime(), delay);
+        musicNodes.push({ stop: () => clearTimeout(nextChimeTimer) });
+      }
+      setTimeout(() => playChime(), 2000);
+    }
+
+    function stopEidMusic() {
+      musicNodes.forEach(node => {
+        try { node.stop(); } catch(e) {}
+      });
+      musicNodes = [];
+      if (audioCtx) {
+        audioCtx.close().catch(() => {});
+        audioCtx = null;
+      }
+    }
+
+    function toggleMusic() {
+      const btn = document.getElementById('musicBtn');
+      const icon = document.getElementById('musicIcon');
+      if (musicPlaying) {
+        musicPlaying = false;
+        stopEidMusic();
+        icon.className = 'fas fa-volume-mute';
+        btn.classList.remove('playing');
+      } else {
+        musicPlaying = true;
+        createEidMusic();
+        icon.className = 'fas fa-volume-up';
+        btn.classList.add('playing');
+      }
+    }
+
+    // ===== SCROLL REVEAL =====
+    function initAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Start typing effect when message section is visible
+            if (entry.target.closest('#message') && !typingStarted) {
+              startTyping();
+            }
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    // ===== TYPING EFFECT =====
+    let typingStarted = false;
+    const loveMessage = `My Respected Future Wife,\n\nAs the crescent moon appears and the world celebrates Eid, my heart is filled with gratitude to Allah for blessing my life with someone as wonderful as you.\n\nAllah has written our story before we even knew it, and I truly believe He chose the best for both of us. The thought of building a life together, In Sha Allah, fills my heart with so much hope and happiness.\n\nThis Eid, I want you to know that I deeply respect you, I admire you, and I look forward to every beautiful chapter that awaits us together.\n\nYou are the answer to my prayers, and I promise to always honor, cherish, and stand by you — today and forever. Eid Mubarak!\n\nMay Allah bless our journey together with endless barakah, understanding, and happiness. 💛`;
+
+    function startTyping() {
+      typingStarted = true;
+      const container = document.getElementById('typedText');
+      let i = 0;
+      container.innerHTML = '<span class="typing-cursor"></span>';
+      
+      function typeChar() {
+        if (i < loveMessage.length) {
+          const cursor = container.querySelector('.typing-cursor');
+          const char = loveMessage[i];
+          if (char === '\n') {
+            cursor.insertAdjacentHTML('beforebegin', '<br/>');
+          } else {
+            cursor.insertAdjacentHTML('beforebegin', char);
+          }
+          i++;
+          const delay = char === '.' || char === ',' || char === '\n' ? 80 : 25;
+          setTimeout(typeChar, delay);
+        } else {
+          container.querySelector('.typing-cursor').remove();
+          document.getElementById('signature').style.opacity = '1';
+          document.getElementById('signature').style.transition = 'opacity 1s ease';
+        }
+      }
+      setTimeout(typeChar, 500);
+    }
+
+    // ===== ENVELOPE =====
+    function openEnvelope() {
+      document.getElementById('envelope').classList.add('envelope-opened');
+    }
+
+    // ===== GIFT BOXES =====
+    function openGift(box) {
+      if (!box.classList.contains('opened')) {
+        box.classList.add('opened');
+        // Mini confetti burst on open
+        const rect = box.getBoundingClientRect();
+        for (let i = 0; i < 15; i++) {
+          setTimeout(() => {
+            const spark = document.createElement('div');
+            spark.className = 'confetti-piece';
+            const colors = ['#ffd700', '#c9a84c', '#fff', '#ffeaa7'];
+            spark.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            spark.style.left = (rect.left + rect.width / 2 + (Math.random() - 0.5) * 100) + 'px';
+            spark.style.top = (rect.top + window.scrollY) + 'px';
+            spark.style.width = (4 + Math.random() * 6) + 'px';
+            spark.style.height = (4 + Math.random() * 6) + 'px';
+            spark.style.borderRadius = '50%';
+            spark.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+            spark.style.position = 'absolute';
+            document.body.appendChild(spark);
+            setTimeout(() => spark.remove(), 3000);
+          }, i * 40);
+        }
+      }
+    }
+    function closeGift(btn) {
+      btn.closest('.gift-box').classList.remove('opened');
+    }
+
+    // ===== CONFETTI =====
+    function launchConfetti() {
+      const colors = ['#ffd700', '#c9a84c', '#fff', '#ff6b6b', '#a07c1c', '#ffeaa7', '#dfe6e9'];
+      const shapes = ['circle', 'square'];
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti-piece';
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const shape = shapes[Math.floor(Math.random() * shapes.length)];
+          confetti.style.backgroundColor = color;
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.width = (6 + Math.random() * 10) + 'px';
+          confetti.style.height = (6 + Math.random() * 10) + 'px';
+          confetti.style.borderRadius = shape === 'circle' ? '50%' : '2px';
+          confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
+          confetti.style.animationDelay = '0s';
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 5000);
+        }, i * 30);
+      }
+    }
+
+    // ===== HEART BURST =====
+    function launchHeartBurst() {
+      const hearts = ['💛', '💖', '💝', '🤍', '✨'];
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+          heart.style.cssText = `
+            position: fixed; z-index: 9998; pointer-events: none;
+            font-size: ${1 + Math.random() * 2}rem;
+            left: ${40 + Math.random() * 20}vw;
+            bottom: 0;
+            animation: heartBurst ${2 + Math.random() * 2}s ease-out forwards;
+          `;
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 4000);
+        }, i * 80);
+      }
+    }
+
+    // Add heart burst keyframes dynamically
+    const heartBurstStyle = document.createElement('style');
+    heartBurstStyle.textContent = `
+      @keyframes heartBurst {
+        0% { transform: translateY(0) translateX(0) scale(0); opacity: 1; }
+        50% { opacity: 1; }
+        100% { 
+          transform: translateY(-100vh) translateX(${Math.random() > 0.5 ? '' : '-'}${20 + Math.random() * 40}vw) scale(1) rotate(${Math.random() * 360}deg); 
+          opacity: 0; 
+        }
+      }
+    `;
+    document.head.appendChild(heartBurstStyle);
+
+    // ===== INITIAL CONFETTI ON LOAD =====
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        launchConfetti();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
