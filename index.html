@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eid Mubarak, My Future Wife 🌙</title>
+  <title>Eid Mubarak, Zoha 🌙</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
@@ -425,23 +425,6 @@
       to { opacity: 1; }
     }
 
-    /* ===== SURPRISE BUTTON ===== */
-    .surprise-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 16px 40px; border: 2px solid #c9a84c;
-      background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
-      color: #ffd700; font-family: 'Poppins', sans-serif;
-      font-size: 0.95rem; font-weight: 500; letter-spacing: 1px;
-      border-radius: 50px; cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      margin-top: 40px;
-    }
-    .surprise-btn:hover {
-      background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(201,168,76,0.1));
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(201,168,76,0.25);
-    }
-
     /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
       .navbar { padding: 12px 20px; }
@@ -459,7 +442,6 @@
       .crescent-moon .moon-inner { width: 80px; height: 80px; top: -8px; right: -12px; }
       .hero { padding: 80px 20px 80px; }
       .hero-message { font-size: 0.92rem; padding: 0 8px; }
-      .surprise-btn { padding: 14px 28px; font-size: 0.88rem; text-align: center; }
       .wishes-grid { grid-template-columns: 1fr; gap: 20px; max-width: 480px; margin: 0 auto; }
       .love-letter { padding: 30px 20px; }
       .message-container { padding: 0 12px; }
@@ -471,7 +453,6 @@
       .wish-card { padding: 28px 18px; }
       .hero { padding: 80px 16px 80px; }
       .hero-message { font-size: 0.9rem; }
-      .surprise-btn { width: 100%; max-width: 320px; justify-content: center; font-size: 0.85rem; }
       .footer { padding: 40px 16px 28px; }
       .footer h3 { font-size: 1.6rem; }
       .scroll-indicator { bottom: 20px; }
@@ -580,7 +561,7 @@
       <div class="love-letter">
         <div class="typed-text" id="typedText"></div>
         <div class="love-signature" id="signature" style="opacity:0;">
-          — Your Future Husband 💛
+          — Ahmad 💛
         </div>
       </div>
     </div>
@@ -589,7 +570,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-moon">🌙</div>
-    <h3>Eid Mubarak, My Future Wife 🌙</h3>
+    <h3>Eid Mubarak, Zoha 🌙</h3>
     <p>Made with heartfelt prayers & best wishes, just for you — Eid ul-Fitr</p>
     <div class="footer-hearts">💛 💛 💛</div>
   </footer>
@@ -810,35 +791,6 @@
       document.getElementById('envelope').classList.add('envelope-opened');
     }
 
-    // ===== GIFT BOXES =====
-    function openGift(box) {
-      if (!box.classList.contains('opened')) {
-        box.classList.add('opened');
-        // Mini confetti burst on open
-        const rect = box.getBoundingClientRect();
-        for (let i = 0; i < 15; i++) {
-          setTimeout(() => {
-            const spark = document.createElement('div');
-            spark.className = 'confetti-piece';
-            const colors = ['#ffd700', '#c9a84c', '#fff', '#ffeaa7'];
-            spark.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            spark.style.left = (rect.left + rect.width / 2 + (Math.random() - 0.5) * 100) + 'px';
-            spark.style.top = (rect.top + window.scrollY) + 'px';
-            spark.style.width = (4 + Math.random() * 6) + 'px';
-            spark.style.height = (4 + Math.random() * 6) + 'px';
-            spark.style.borderRadius = '50%';
-            spark.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
-            spark.style.position = 'absolute';
-            document.body.appendChild(spark);
-            setTimeout(() => spark.remove(), 3000);
-          }, i * 40);
-        }
-      }
-    }
-    function closeGift(btn) {
-      btn.closest('.gift-box').classList.remove('opened');
-    }
-
     // ===== CONFETTI =====
     function launchConfetti() {
       const colors = ['#ffd700', '#c9a84c', '#fff', '#ff6b6b', '#a07c1c', '#ffeaa7', '#dfe6e9'];
@@ -861,40 +813,6 @@
         }, i * 30);
       }
     }
-
-    // ===== HEART BURST =====
-    function launchHeartBurst() {
-      const hearts = ['💛', '💖', '💝', '🤍', '✨'];
-      for (let i = 0; i < 30; i++) {
-        setTimeout(() => {
-          const heart = document.createElement('div');
-          heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-          heart.style.cssText = `
-            position: fixed; z-index: 9998; pointer-events: none;
-            font-size: ${1 + Math.random() * 2}rem;
-            left: ${40 + Math.random() * 20}vw;
-            bottom: 0;
-            animation: heartBurst ${2 + Math.random() * 2}s ease-out forwards;
-          `;
-          document.body.appendChild(heart);
-          setTimeout(() => heart.remove(), 4000);
-        }, i * 80);
-      }
-    }
-
-    // Add heart burst keyframes dynamically
-    const heartBurstStyle = document.createElement('style');
-    heartBurstStyle.textContent = `
-      @keyframes heartBurst {
-        0% { transform: translateY(0) translateX(0) scale(0); opacity: 1; }
-        50% { opacity: 1; }
-        100% { 
-          transform: translateY(-100vh) translateX(${Math.random() > 0.5 ? '' : '-'}${20 + Math.random() * 40}vw) scale(1) rotate(${Math.random() * 360}deg); 
-          opacity: 0; 
-        }
-      }
-    `;
-    document.head.appendChild(heartBurstStyle);
 
     // ===== INITIAL CONFETTI ON LOAD =====
     window.addEventListener('load', () => {
