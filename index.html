@@ -502,7 +502,7 @@
     </ul>
     <div style="display:flex;align-items:center;gap:12px;">
       <button class="music-toggle" id="musicBtn" title="Toggle Music" onclick="toggleMusic()">
-        <i class="fas fa-volume-mute" id="musicIcon"></i>
+        <i class="fas fa-volume-up" id="musicIcon"></i>
       </button>
       <button class="hamburger" id="hamburger" onclick="toggleNav()">
         <span></span><span></span><span></span>
@@ -680,6 +680,7 @@
     // ===== MUSIC TOGGLE =====
     const bgMusic = document.getElementById('backgroundMusic');
     let musicPlaying = false;
+    let userWantsMusic = true; // Track user preference
 
     function toggleMusic() {
       const btn = document.getElementById('musicBtn');
@@ -688,11 +689,13 @@
       if (musicPlaying) {
         bgMusic.pause();
         musicPlaying = false;
+        userWantsMusic = false;
         icon.className = 'fas fa-volume-mute';
         btn.classList.remove('playing');
       } else {
         bgMusic.play().then(() => {
           musicPlaying = true;
+          userWantsMusic = true;
           icon.className = 'fas fa-volume-up';
           btn.classList.add('playing');
         }).catch(err => {
@@ -700,6 +703,40 @@
         });
       }
     }
+
+    // Auto-start music on page load (after preloader)
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        // Auto-play music after preloader
+        bgMusic.play().then(() => {
+          musicPlaying = true;
+          userWantsMusic = true;
+          document.getElementById('musicBtn').classList.add('playing');
+        }).catch(err => {
+          // Auto-play blocked by browser - user needs to click
+          console.log('Auto-play blocked, user needs to click music button');
+        });
+      }, 2600); // Start after preloader hides
+    });
+
+    // Pause music when tab is hidden/inactive
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        // Tab is hidden - pause music
+        if (musicPlaying) {
+          bgMusic.pause();
+        }
+      } else {
+        // Tab is visible again - resume if user wants music
+        if (userWantsMusic && !musicPlaying) {
+          bgMusic.play().then(() => {
+            musicPlaying = true;
+          }).catch(err => {
+            console.log('Failed to resume music:', err);
+          });
+        }
+      }
+    });
 
     // ===== SCROLL REVEAL =====
     function initAnimations() {
