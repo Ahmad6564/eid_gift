@@ -612,8 +612,11 @@
     <div class="footer-hearts">💛 💛 💛</div>
   </footer>
 
-  <!-- BACKGROUND MUSIC (optional — place an audio file or use a URL) -->
-  <!-- Music is generated via Web Audio API — no external file needed -->
+  <!-- BACKGROUND MUSIC -->
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="videoplayback.m4a" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     // ===== PRELOADER =====
@@ -689,172 +692,27 @@
       document.getElementById('hamburger').classList.remove('active');
     }
 
-    // ===== MUSIC — Soft Eid Ambient Melody (Web Audio API) =====
+    // ===== MUSIC TOGGLE =====
+    const bgMusic = document.getElementById('backgroundMusic');
     let musicPlaying = false;
-    let audioCtx = null;
-    let masterGain = null;
-    let musicNodes = [];
-
-    // HIJAZ MAQAM (Middle Eastern scale) — authentic Eid/Islamic musical feel
-    // D Hijaz: D, Eb, F#, G, A, Bb, C, D (characteristic augmented second interval)
-    const hijazScale = [
-      293.66, 311.13, 369.99, 392.00, 440.00, 466.16, 523.25,  // D4-C5
-      587.33, 622.25, 739.99, 783.99, 880.00, 932.33, 1046.50, // D5-C6
-      587.33, 523.25, 466.16, 440.00, 392.00, 369.99, 311.13   // Descending
-    ];
-
-    // BAYATI MAQAM — another traditional Arabic scale for variety
-    // D Bayati: D, Eb, F, G, A, Bb, C, D
-    const bayatiScale = [
-      293.66, 311.13, 349.23, 392.00, 440.00, 466.16, 523.25,  // D4-C5
-      587.33, 622.25, 698.46, 783.99, 880.00, 932.33,          // D5-B5
-      783.99, 698.46, 622.25, 587.33, 523.25, 466.16, 440.00   // Descending
-    ];
-
-    // Combine both maqams for rich, authentic Middle Eastern melody
-    const melodyNotes = [
-      ...hijazScale.slice(0, 7),      // Ascending Hijaz
-      ...bayatiScale.slice(7, 13),    // Continue with Bayati upper range
-      ...hijazScale.slice(14, 21),    // Descending Hijaz
-      ...bayatiScale.slice(0, 4),     // Bayati opening phrase
-      ...hijazScale.slice(3, 7),      // Hijaz characteristic interval
-      ...bayatiScale.slice(16, 20)    // Bayati resolution
-    ];
-
-    // Middle Eastern inspired chord progressions (modal harmony)
-    const padChords = [
-      [146.83, 174.61, 220.00, 293.66],  // Dm, F, A - Bayati tonic
-      [164.81, 196.00, 246.94, 311.13],  // Em, G, B - tension
-      [174.61, 220.00, 277.18],          // F, A, C# - Hijaz color
-      [146.83, 184.99, 233.08],          // D, F#, Bb - resolution
-    ];
-
-    function createEidMusic() {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      masterGain = audioCtx.createGain();
-      masterGain.gain.value = 0.35;
-      masterGain.connect(audioCtx.destination);
-
-      // Soft reverb/delay simulation via multiple delayed nodes
-      const convGain = audioCtx.createGain();
-      convGain.gain.value = 0.15;
-      convGain.connect(audioCtx.destination);
-
-      playAmbientPad(convGain);
-      playMelodyLoop(masterGain);
-      playSoftChimes(convGain);
-    }
-
-    function playAmbientPad(output) {
-      let chordIndex = 0;
-      function playChord() {
-        if (!musicPlaying) return;
-        const chord = padChords[chordIndex % padChords.length];
-        chord.forEach(freq => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = 'sine';
-          osc.frequency.value = freq;
-          gain.gain.setValueAtTime(0, audioCtx.currentTime);
-          gain.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 1.5);
-          gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 3.5);
-          gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 5);
-          osc.connect(gain);
-          gain.connect(output);
-          osc.start(audioCtx.currentTime);
-          osc.stop(audioCtx.currentTime + 5);
-          musicNodes.push(osc);
-        });
-        chordIndex++;
-        const nextChordTimer = setTimeout(() => playChord(), 4800);
-        musicNodes.push({ stop: () => clearTimeout(nextChordTimer) });
-      }
-      playChord();
-    }
-
-    function playMelodyLoop(output) {
-      let noteIndex = 0;
-      function playNote() {
-        if (!musicPlaying) return;
-        const freq = melodyNotes[noteIndex % melodyNotes.length];
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        // Alternate between sine and triangle for warmth
-        osc.type = noteIndex % 3 === 0 ? 'triangle' : 'sine';
-        osc.frequency.value = freq;
-
-        const now = audioCtx.currentTime;
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(0.12, now + 0.15);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
-
-        osc.connect(gain);
-        gain.connect(output);
-        osc.start(now);
-        osc.stop(now + 2);
-        musicNodes.push(osc);
-
-        noteIndex++;
-        // Varying rhythm — longer pauses after certain notes
-        const pause = noteIndex % 5 === 0 ? 1200 : noteIndex % 3 === 0 ? 900 : 600;
-        const nextNoteTimer = setTimeout(() => playNote(), pause);
-        musicNodes.push({ stop: () => clearTimeout(nextNoteTimer) });
-      }
-      playNote();
-    }
-
-    function playSoftChimes(output) {
-      const chimeFreqs = [1046.50, 1174.66, 1318.51, 1567.98]; // C6, D6, E6, G6
-      let chimeIndex = 0;
-      function playChime() {
-        if (!musicPlaying) return;
-        const freq = chimeFreqs[chimeIndex % chimeFreqs.length];
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.value = freq;
-        const now = audioCtx.currentTime;
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(0.04, now + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 2.5);
-        osc.connect(gain);
-        gain.connect(output);
-        osc.start(now);
-        osc.stop(now + 2.6);
-        musicNodes.push(osc);
-        chimeIndex++;
-        const delay = 2500 + Math.random() * 3000;
-        const nextChimeTimer = setTimeout(() => playChime(), delay);
-        musicNodes.push({ stop: () => clearTimeout(nextChimeTimer) });
-      }
-      setTimeout(() => playChime(), 2000);
-    }
-
-    function stopEidMusic() {
-      musicNodes.forEach(node => {
-        try { node.stop(); } catch(e) {}
-      });
-      musicNodes = [];
-      if (audioCtx) {
-        audioCtx.close().catch(() => {});
-        audioCtx = null;
-      }
-    }
 
     function toggleMusic() {
       const btn = document.getElementById('musicBtn');
       const icon = document.getElementById('musicIcon');
+      
       if (musicPlaying) {
+        bgMusic.pause();
         musicPlaying = false;
-        stopEidMusic();
         icon.className = 'fas fa-volume-mute';
         btn.classList.remove('playing');
       } else {
-        musicPlaying = true;
-        createEidMusic();
-        icon.className = 'fas fa-volume-up';
-        btn.classList.add('playing');
+        bgMusic.play().then(() => {
+          musicPlaying = true;
+          icon.className = 'fas fa-volume-up';
+          btn.classList.add('playing');
+        }).catch(err => {
+          console.log('Audio playback failed:', err);
+        });
       }
     }
 
