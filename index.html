@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -222,24 +222,6 @@
       max-width: 600px; font-size: 1rem; line-height: 1.8;
       color: rgba(245,240,232,0.8); animation: fadeInUp 1s ease 1.2s both;
     }
-    .scroll-indicator {
-      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      animation: fadeInUp 1s ease 1.8s both;
-    }
-    .scroll-indicator span {
-      font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
-      color: rgba(201,168,76,0.6);
-    }
-    .scroll-arrow {
-      width: 24px; height: 24px; border-right: 2px solid #c9a84c;
-      border-bottom: 2px solid #c9a84c; transform: rotate(45deg);
-      animation: scrollBounce 2s ease infinite;
-    }
-    @keyframes scrollBounce {
-      0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; }
-      50% { transform: rotate(45deg) translateY(8px); opacity: 1; }
-    }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -314,90 +296,7 @@
       font-size: 0.92rem; line-height: 1.8; color: rgba(245,240,232,0.75);
     }
 
-    /* ===== GIFT BOXES SECTION ===== */
-    .gifts-section {
-      background: linear-gradient(180deg, transparent, rgba(201,168,76,0.03), transparent);
-    }
-    .gifts-grid {
-      max-width: 1000px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-    }
-    .gift-box {
-      position: relative; perspective: 800px; cursor: pointer;
-      height: 280px;
-    }
-    .gift-box-inner {
-      position: relative; width: 100%; height: 100%;
-      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-      transform-style: preserve-3d;
-    }
-    .gift-box.opened .gift-box-inner {
-      transform: rotateY(180deg);
-    }
-    .gift-front, .gift-back {
-      position: absolute; inset: 0; border-radius: 20px;
-      backface-visibility: hidden; display: flex;
-      flex-direction: column; align-items: center; justify-content: center;
-      padding: 30px; text-align: center;
-    }
-    .gift-front {
-      background: linear-gradient(145deg, rgba(26,26,46,0.9), rgba(15,15,30,0.95));
-      border: 2px solid rgba(201,168,76,0.2);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .gift-front:hover {
-      border-color: rgba(201,168,76,0.5);
-      box-shadow: 0 12px 40px rgba(201,168,76,0.15);
-    }
-    .gift-icon {
-      font-size: 3.5rem; margin-bottom: 16px;
-      animation: giftBounce 2s ease-in-out infinite;
-    }
-    @keyframes giftBounce {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.05); }
-    }
-    .gift-front h3 {
-      font-family: 'Playfair Display', serif; font-size: 1.15rem;
-      color: #ffd700; margin-bottom: 8px;
-    }
-    .gift-front p {
-      font-size: 0.8rem; color: rgba(201,168,76,0.5);
-      letter-spacing: 1px; text-transform: uppercase;
-    }
-    .gift-ribbon {
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 30px; height: 100%; 
-      background: linear-gradient(180deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05));
-      pointer-events: none;
-    }
-    .gift-ribbon::before {
-      content: ''; position: absolute; top: 0; left: -35px;
-      width: 100px; height: 30px;
-      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.15), transparent);
-    }
-    .gift-back {
-      background: linear-gradient(145deg, rgba(201,168,76,0.12), rgba(26,26,46,0.95));
-      border: 2px solid rgba(201,168,76,0.35);
-      transform: rotateY(180deg);
-      box-shadow: 0 15px 50px rgba(201,168,76,0.2);
-    }
-    .gift-back .gift-msg-icon { font-size: 2rem; margin-bottom: 14px; }
-    .gift-back h4 {
-      font-family: 'Playfair Display', serif; color: #ffd700;
-      font-size: 1.1rem; margin-bottom: 12px;
-    }
-    .gift-back p {
-      font-size: 0.9rem; line-height: 1.8; color: rgba(245,240,232,0.85);
-      font-style: italic;
-    }
-    .gift-close {
-      position: absolute; top: 12px; right: 16px; background: none;
-      border: none; color: rgba(201,168,76,0.5); font-size: 1.2rem;
-      cursor: pointer; transition: color 0.3s;
-    }
-    .gift-close:hover { color: #ffd700; }
+
 
     /* ===== ROMANTIC MESSAGE SECTION ===== */
     .message-section {
@@ -471,39 +370,7 @@
       100% { transform: translateY(-100%) rotate(360deg); opacity: 0; }
     }
 
-    /* ===== COUNTDOWN / SPECIAL SECTION ===== */
-    .special-section {
-      text-align: center;
-      background: linear-gradient(180deg, transparent, rgba(201,168,76,0.04), transparent);
-    }
-    .special-quote {
-      max-width: 700px; margin: 0 auto 50px;
-      font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      font-style: italic; line-height: 1.9; color: rgba(245,240,232,0.85);
-    }
-    .promise-cards {
-      max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;
-    }
-    .promise-card {
-      background: linear-gradient(145deg, rgba(26,26,46,0.7), rgba(10,10,20,0.8));
-      border: 1px solid rgba(201,168,76,0.12);
-      border-radius: 16px; padding: 30px 24px; text-align: center;
-      transition: all 0.4s ease;
-    }
-    .promise-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(201,168,76,0.35);
-      box-shadow: 0 15px 40px rgba(201,168,76,0.1);
-    }
-    .promise-card .emoji { font-size: 2rem; margin-bottom: 14px; }
-    .promise-card h4 {
-      font-family: 'Playfair Display', serif; color: #ffd700;
-      font-size: 1.1rem; margin-bottom: 10px;
-    }
-    .promise-card p {
-      font-size: 0.88rem; color: rgba(245,240,232,0.65); line-height: 1.7;
-    }
+
 
     /* ===== FOOTER ===== */
     .footer {
@@ -590,16 +457,24 @@
       .crescent-moon { width: 100px; height: 100px; }
       .crescent-moon .moon-outer { width: 100px; height: 100px; }
       .crescent-moon .moon-inner { width: 80px; height: 80px; top: -8px; right: -12px; }
+      .hero { padding: 80px 20px 80px; }
+      .hero-message { font-size: 0.92rem; padding: 0 8px; }
+      .surprise-btn { padding: 14px 28px; font-size: 0.88rem; text-align: center; }
+      .wishes-grid { grid-template-columns: 1fr; gap: 20px; max-width: 480px; margin: 0 auto; }
       .love-letter { padding: 30px 20px; }
-      .gifts-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-      .gift-box { height: 260px; }
+      .message-container { padding: 0 12px; }
+      .section-title { font-size: clamp(2rem, 8vw, 3rem); }
     }
 
     @media (max-width: 480px) {
-      section { padding: 70px 16px; }
-      .wish-card { padding: 30px 20px; }
-      .gifts-grid { grid-template-columns: 1fr; }
-      .gift-box { height: 250px; }
+      section { padding: 60px 16px; }
+      .wish-card { padding: 28px 18px; }
+      .hero { padding: 80px 16px 80px; }
+      .hero-message { font-size: 0.9rem; }
+      .surprise-btn { width: 100%; max-width: 320px; justify-content: center; font-size: 0.85rem; }
+      .footer { padding: 40px 16px 28px; }
+      .footer h3 { font-size: 1.6rem; }
+      .scroll-indicator { bottom: 20px; }
     }
   </style>
 </head>
@@ -623,9 +498,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#home" onclick="closeNav()">Home</a></li>
       <li><a href="#wishes" onclick="closeNav()">Wishes</a></li>
-      <li><a href="#gifts" onclick="closeNav()">Gifts</a></li>
       <li><a href="#message" onclick="closeNav()">Message</a></li>
-      <li><a href="#special" onclick="closeNav()">Forever</a></li>
     </ul>
     <div style="display:flex;align-items:center;gap:12px;">
       <button class="music-toggle" id="musicBtn" title="Toggle Music" onclick="toggleMusic()">
@@ -655,7 +528,7 @@
         <div class="moon-inner"></div>
       </div>
     </div>
-    <div class="hero-badge">✦ Eid ul-Fitr 2026 ✦</div>
+    <div class="hero-badge">✦ Eid ul-Fitr ✦</div>
     <h1 class="hero-title">Eid Mubarak, Zoha</h1>
     <p class="hero-subtitle">A Special Eid Gift, Just For You 🌙</p>
     <p class="hero-message">
@@ -665,10 +538,6 @@
     <button class="surprise-btn" onclick="launchConfetti(); this.innerHTML='💖 JazakAllah for being in my life!'">
       ✨ Open Your Eid Surprise
     </button>
-    <div class="scroll-indicator">
-      <span>Scroll Down</span>
-      <div class="scroll-arrow"></div>
-    </div>
   </section>
 
   <!-- EID WISHES SECTION -->
@@ -712,118 +581,6 @@
     </div>
   </section>
 
-  <!-- INTERACTIVE GIFT BOXES SECTION -->
-  <section class="gifts-section" id="gifts">
-    <div class="section-header reveal">
-      <p class="section-label">Unwrap With Love</p>
-      <h2 class="section-title">Eid Gifts For You</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="gifts-grid">
-      <div class="gift-box reveal reveal-delay-1" onclick="openGift(this)">
-        <div class="gift-box-inner">
-          <div class="gift-front">
-            <div class="gift-ribbon"></div>
-            <div class="gift-icon">🎁</div>
-            <h3>Gift #1</h3>
-            <p>Tap to unwrap</p>
-          </div>
-          <div class="gift-back">
-            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
-            <div class="gift-msg-icon">🌙</div>
-            <h4>You Are My Noor</h4>
-            <p>Allah placed a special light in you — a warmth that brightens every room, every heart, and every moment. I feel truly blessed that He chose you for me.</p>
-          </div>
-        </div>
-      </div>
-      <div class="gift-box reveal reveal-delay-2" onclick="openGift(this)">
-        <div class="gift-box-inner">
-          <div class="gift-front">
-            <div class="gift-ribbon"></div>
-            <div class="gift-icon">🎀</div>
-            <h3>Gift #2</h3>
-            <p>Tap to unwrap</p>
-          </div>
-          <div class="gift-back">
-            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
-            <div class="gift-msg-icon">✨</div>
-            <h4>Your Kindness</h4>
-            <p>The way you care about everyone around you — your beautiful heart reflects the mercy of the Most Merciful Himself. I admire your compassion deeply.</p>
-          </div>
-        </div>
-      </div>
-      <div class="gift-box reveal reveal-delay-3" onclick="openGift(this)">
-        <div class="gift-box-inner">
-          <div class="gift-front">
-            <div class="gift-ribbon"></div>
-            <div class="gift-icon">🎊</div>
-            <h3>Gift #3</h3>
-            <p>Tap to unwrap</p>
-          </div>
-          <div class="gift-back">
-            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
-            <div class="gift-msg-icon">🤲</div>
-            <h4>A Special Dua</h4>
-            <p>Ya Allah, bless my future wife with all the happiness in both worlds. Grant her every wish of her heart and keep her always smiling. Ameen. 🤍</p>
-          </div>
-        </div>
-      </div>
-      <div class="gift-box reveal reveal-delay-1" onclick="openGift(this)">
-        <div class="gift-box-inner">
-          <div class="gift-front">
-            <div class="gift-ribbon"></div>
-            <div class="gift-icon">💝</div>
-            <h3>Gift #4</h3>
-            <p>Tap to unwrap</p>
-          </div>
-          <div class="gift-back">
-            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
-            <div class="gift-msg-icon">🌹</div>
-            <h4>My Respect For You</h4>
-            <p>I respect your values, your faith, and the beautiful person you are. In Sha Allah, I will always honor who you are and support your dreams.</p>
-          </div>
-        </div>
-      </div>
-      <div class="gift-box reveal reveal-delay-2" onclick="openGift(this)">
-        <div class="gift-box-inner">
-          <div class="gift-front">
-            <div class="gift-ribbon"></div>
-            <div class="gift-icon">🌟</div>
-            <h3>Gift #5</h3>
-            <p>Tap to unwrap</p>
-          </div>
-          <div class="gift-back">
-            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
-            <div class="gift-msg-icon">🏡</div>
-            <h4>Our Future Home</h4>
-            <p>I dream of building a home filled with peace, laughter, and the recitation of Quran. A place where our hearts find sukoon — together, always.</p>
-          </div>
-        </div>
-      </div>
-      <div class="gift-box reveal reveal-delay-3" onclick="openGift(this)">
-        <div class="gift-box-inner">
-          <div class="gift-front">
-            <div class="gift-ribbon"></div>
-            <div class="gift-icon">🎁</div>
-            <h3>Gift #6</h3>
-            <p>Tap to unwrap</p>
-          </div>
-          <div class="gift-back">
-            <button class="gift-close" onclick="event.stopPropagation(); closeGift(this)">&times;</button>
-            <div class="gift-msg-icon">💫</div>
-            <h4>Eid Promise</h4>
-            <p>This Eid, I promise to always be someone you can rely on — your partner in deen and duniya, your support, and your biggest cheerleader. Always. 💛</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close">&times;</button>
-    <img id="lightboxImg" src="" alt="Photo" />
-  </div>
 
   <!-- ROMANTIC MESSAGE SECTION -->
   <section class="message-section" id="message">
@@ -847,44 +604,11 @@
     </div>
   </section>
 
-  <!-- SPECIAL / PROMISES SECTION -->
-  <section class="special-section" id="special">
-    <div class="section-header reveal">
-      <p class="section-label">My Promise To You</p>
-      <h2 class="section-title">Forever & Always</h2>
-      <div class="divider"></div>
-    </div>
-    <p class="special-quote reveal">
-      On this beautiful Eid, I want you to know that you are the greatest blessing in my life.
-      Every day with the thought of our future together fills my heart with gratitude and joy.
-    </p>
-    <div class="promise-cards">
-      <div class="promise-card reveal reveal-delay-1">
-        <div class="emoji">🤝</div>
-        <h4>I Promise to Stand By You</h4>
-        <p>In every storm and every sunshine, my hand will always hold yours. You will never walk alone.</p>
-      </div>
-      <div class="promise-card reveal reveal-delay-2">
-        <div class="emoji">💝</div>
-        <h4>I Promise to Love You More</h4>
-        <p>Every single day, I will find new reasons to fall in love with you all over again.</p>
-      </div>
-      <div class="promise-card reveal reveal-delay-3">
-        <div class="emoji">🌅</div>
-        <h4>I Promise to Build Our Future</h4>
-        <p>A beautiful life together — filled with laughter, love, faith, and endless cups of chai.</p>
-      </div>
-    </div>
-    <button class="surprise-btn" onclick="launchConfetti(); launchHeartBurst();" style="margin-top:50px;">
-      💖 Sending Duas & Prayers
-    </button>
-  </section>
-
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-moon">🌙</div>
     <h3>Eid Mubarak, My Future Wife 🌙</h3>
-    <p>Made with heartfelt prayers & best wishes, just for you — Eid ul-Fitr 2026</p>
+    <p>Made with heartfelt prayers & best wishes, just for you — Eid ul-Fitr</p>
     <div class="footer-hearts">💛 💛 💛</div>
   </footer>
 
@@ -971,19 +695,38 @@
     let masterGain = null;
     let musicNodes = [];
 
-    // Pentatonic-inspired scale notes (Hz) — warm, peaceful, Islamic-inspired feel
-    const melodyNotes = [
-      261.63, 293.66, 329.63, 392.00, 440.00,  // C4, D4, E4, G4, A4
-      523.25, 493.88, 440.00, 392.00, 329.63,  // C5, B4, A4, G4, E4
-      293.66, 329.63, 392.00, 440.00, 392.00,  // D4, E4, G4, A4, G4
-      329.63, 293.66, 261.63, 293.66, 329.63   // E4, D4, C4, D4, E4
+    // HIJAZ MAQAM (Middle Eastern scale) — authentic Eid/Islamic musical feel
+    // D Hijaz: D, Eb, F#, G, A, Bb, C, D (characteristic augmented second interval)
+    const hijazScale = [
+      293.66, 311.13, 369.99, 392.00, 440.00, 466.16, 523.25,  // D4-C5
+      587.33, 622.25, 739.99, 783.99, 880.00, 932.33, 1046.50, // D5-C6
+      587.33, 523.25, 466.16, 440.00, 392.00, 369.99, 311.13   // Descending
     ];
 
+    // BAYATI MAQAM — another traditional Arabic scale for variety
+    // D Bayati: D, Eb, F, G, A, Bb, C, D
+    const bayatiScale = [
+      293.66, 311.13, 349.23, 392.00, 440.00, 466.16, 523.25,  // D4-C5
+      587.33, 622.25, 698.46, 783.99, 880.00, 932.33,          // D5-B5
+      783.99, 698.46, 622.25, 587.33, 523.25, 466.16, 440.00   // Descending
+    ];
+
+    // Combine both maqams for rich, authentic Middle Eastern melody
+    const melodyNotes = [
+      ...hijazScale.slice(0, 7),      // Ascending Hijaz
+      ...bayatiScale.slice(7, 13),    // Continue with Bayati upper range
+      ...hijazScale.slice(14, 21),    // Descending Hijaz
+      ...bayatiScale.slice(0, 4),     // Bayati opening phrase
+      ...hijazScale.slice(3, 7),      // Hijaz characteristic interval
+      ...bayatiScale.slice(16, 20)    // Bayati resolution
+    ];
+
+    // Middle Eastern inspired chord progressions (modal harmony)
     const padChords = [
-      [130.81, 164.81, 196.00],  // C3, E3, G3
-      [146.83, 174.61, 220.00],  // D3, F3, A3
-      [164.81, 196.00, 246.94],  // E3, G3, B3
-      [130.81, 164.81, 196.00],  // C3, E3, G3
+      [146.83, 174.61, 220.00, 293.66],  // Dm, F, A - Bayati tonic
+      [164.81, 196.00, 246.94, 311.13],  // Em, G, B - tension
+      [174.61, 220.00, 277.18],          // F, A, C# - Hijaz color
+      [146.83, 184.99, 233.08],          // D, F#, Bb - resolution
     ];
 
     function createEidMusic() {
