@@ -598,7 +598,7 @@
   </footer>
 
   <!-- BACKGROUND MUSIC -->
-  <audio id="backgroundMusic" loop preload="auto">
+  <audio id="backgroundMusic" loop preload="auto" autoplay>
     <source src="videoplayback.m4a" type="audio/mp4">
     Your browser does not support the audio element.
   </audio>
@@ -609,6 +609,8 @@
       setTimeout(() => {
         document.getElementById('preloader').classList.add('hidden');
         initAnimations();
+        // Ensure music starts playing
+        startMusic();
       }, 2500);
     });
 
@@ -682,6 +684,32 @@
     let musicPlaying = false;
     let userWantsMusic = true; // Track user preference
 
+    // Start music function
+    function startMusic() {
+      const btn = document.getElementById('musicBtn');
+      const icon = document.getElementById('musicIcon');
+      
+      bgMusic.volume = 0.7; // Set volume to 70%
+      bgMusic.play().then(() => {
+        musicPlaying = true;
+        userWantsMusic = true;
+        icon.className = 'fas fa-volume-up';
+        btn.classList.add('playing');
+      }).catch(err => {
+        console.log('Auto-play blocked:', err);
+        // Try again on any user interaction
+        document.body.addEventListener('click', function initPlay() {
+          bgMusic.play().then(() => {
+            musicPlaying = true;
+            userWantsMusic = true;
+            icon.className = 'fas fa-volume-up';
+            btn.classList.add('playing');
+            document.body.removeEventListener('click', initPlay);
+          }).catch(e => console.log('Play failed:', e));
+        }, { once: true });
+      });
+    }
+
     function toggleMusic() {
       const btn = document.getElementById('musicBtn');
       const icon = document.getElementById('musicIcon');
@@ -704,19 +732,13 @@
       }
     }
 
-    // Auto-start music on page load (after preloader)
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        // Auto-play music after preloader
-        bgMusic.play().then(() => {
-          musicPlaying = true;
-          userWantsMusic = true;
-          document.getElementById('musicBtn').classList.add('playing');
-        }).catch(err => {
-          // Auto-play blocked by browser - user needs to click
-          console.log('Auto-play blocked, user needs to click music button');
-        });
-      }, 2600); // Start after preloader hides
+    // Listen for when audio actually starts playing
+    bgMusic.addEventListener('play', () => {
+      musicPlaying = true;
+      const btn = document.getElementById('musicBtn');
+      const icon = document.getElementById('musicIcon');
+      icon.className = 'fas fa-volume-up';
+      btn.classList.add('playing');
     });
 
     // Pause music when tab is hidden/inactive
